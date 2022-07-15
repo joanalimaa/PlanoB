@@ -9,12 +9,15 @@ import UIKit
 
 class FeaturedViewController: UIViewController, UICollectionViewDataSource {
     
-    let popularMovies = Movie.popularMovies()
+    var popularMovies: [Movie] = [] //Movie.popularMovies()
     let nowPlayingMovies = Movie.nowPlayingMovies()
+    //Adicionar aqui o Upcoming
+    
     
     
     @IBOutlet weak var popularCollectionView: UICollectionView!
     @IBOutlet weak var nowPlayingCollectionView: UICollectionView!
+    //Adicionar aqui o Upcoming
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,13 @@ class FeaturedViewController: UIViewController, UICollectionViewDataSource {
         
         nowPlayingCollectionView.dataSource = self
         nowPlayingCollectionView.delegate = self
+        
+        Task {
+            popularMovies = await Movie.popularMoviesAPI()
+            self.popularCollectionView.reloadData() //Carrega sem nada oq la em cima [] ta vazio e ai recarrega pra mostrar as coisas
+        }
+        
+        
         
     }
     

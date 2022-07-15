@@ -37,7 +37,7 @@ extension FeaturedViewController{
     fileprivate func makePopularCell(_ indexPath: IndexPath) -> PopularCollectionViewCell {
         let cell = popularCollectionView.dequeueReusableCell(withReuseIdentifier: PopularCollectionViewCell.cellIdentifier, for: indexPath) as? PopularCollectionViewCell
         
-        cell?.setup(title: popularMovies[indexPath.item].title, image: UIImage(named: popularMovies[indexPath.item].backdrop) ?? UIImage())
+        cell?.setup(title: popularMovies[indexPath.item].title, image: UIImage(named: popularMovies[indexPath.item].backdropPath) ?? UIImage())
         
         return cell ?? PopularCollectionViewCell()
     }
@@ -52,7 +52,7 @@ extension FeaturedViewController{
         
         cell?.setup(title: nowPlayingMovies[indexPath.item].title,
                     year: year,
-                    image: UIImage(named: nowPlayingMovies[indexPath.item].poster) ?? UIImage())
+                    image: UIImage(named: nowPlayingMovies[indexPath.item].posterPath) ?? UIImage())
     
         
         return cell ?? NowPlayingCollectionViewCell()
